@@ -19,8 +19,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :mri_21, :rbx]
   gem 'guard-bundler'
-  gem 'guard-rails'
-  gem 'guard-rspec'
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
@@ -29,14 +27,22 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'pry-rails'
-  gem 'pry-rescue'
-  gem 'rspec-rails'
+  gem 'childprocess', '0.3.9'
+  gem 'guard-rspec', '4.2.7'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'rspec-rails', '2.14.0'
+  gem 'spring-commands-rspec'
 end
+
 group :test do
-  gem 'capybara'
-  gem 'database_cleaner', '1.0.1'
+  gem 'capybara', '2.1.0'
+  gem 'database_cleaner', '1.2.0'
   gem 'email_spec'
+  gem 'factory_girl_rails', '4.2.1'
+  gem 'ffaker', '1.23'
+  gem 'launchy'
+  gem 'selenium-webdriver', '2.37.0'
+  gem 'shoulda-matchers', '~> 2.1.0'
 end
