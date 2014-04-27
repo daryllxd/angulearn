@@ -266,6 +266,7 @@ DEPENDENCIES
   dotenv-rails
   email_spec
   factory_girl_rails (= 4.2.1)
+  faraday
   ffaker (= 1.23)
   gravatar-ultimate
   guard-bundler

@@ -7,7 +7,7 @@ describe GithubAdapter do
     expect(GithubAdapter.new.individual_repositories.count).to eq 23
   end
 
-  xit 'has an avatar' do
+  it 'has an avatar' do
     adapter = GithubAdapter.new
     adapter.get_avatar(user).should eq "what?"
 

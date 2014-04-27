@@ -7,25 +7,17 @@ class GithubAdapter
     @connection = GithubConnection.new
   end
 
-  def connection
-    @connection ||= Faraday.new(:url => 'https://github.com', ssl: {verify: false}) do |faraday|
-      faraday.request  :url_encoded             # form-encode POST params
-      faraday.response :logger                  # log requests to STDOUT
-      faraday.adapter Faraday.default_adapter
-    end
-  end
-
   def individual_repositories
     user_info = @connection.user
     projects  = user_info.rels[:repos].get.data
-    # organizations = user_info.rels[:organizations].get.data
-    # organizations.each do |org|
-    #   projects += find_projects_by_organization(org)
-    # end
     projects.map{|hash| {id: hash.id, name: hash.full_name, client: "github"}}
   end
 
   def organization_repositories
+    # organizations = user_info.rels[:organizations].get.data
+    # organizations.each do |org|
+    #   projects += find_projects_by_organization(org)
+    # end
   end
 
   def get_avatar(user)
