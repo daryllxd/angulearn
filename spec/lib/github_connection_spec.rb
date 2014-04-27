@@ -4,7 +4,7 @@ describe GithubConnection do
 
   it 'connects to the Github API' do
     connection = GithubConnection.new
-    expect(connection).not_to be nil
+    expect(connection.user.name).to eq 'Daryll Santos'
   end
 
 end

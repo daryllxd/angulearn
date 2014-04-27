@@ -89,6 +89,9 @@ GEM
     ffaker (1.23.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    gravatar-ultimate (2.0.0)
+      activesupport (>= 2.3.14)
+      rack
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -264,6 +267,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails (= 4.2.1)
   ffaker (= 1.23)
+  gravatar-ultimate
   guard-bundler
   guard-rspec (= 4.2.7)
   haml-rails

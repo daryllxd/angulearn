@@ -3,10 +3,10 @@ Dotenv.load
 require 'octokit'
 
 class GithubConnection
-  attr_reader :client
+  attr_reader :user
 
-  def initialize(login = ENV['GITHUB_USERNAME'], password = ENV['GITHUB_PASSWORD'])
-    @client = Octokit::Client.new(:login => login, :password => password)
+  def initialize(access_token = ENV['GITHUB_ACCESS_TOKEN'])
+    @user = Octokit::Client.new(access_token: access_token).user
   end
 
 end
