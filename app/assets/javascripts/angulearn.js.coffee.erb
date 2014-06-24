@@ -1,0 +1,80 @@
+@Angulearn = angular.module('angulearn', [])
+
+Angulearn.run ($rootScope) ->
+  $rootScope.amfefe = "Pepe"
+
+Angulearn.factory('githubService', ['$http', ($http) ->
+  githubUsername = 'Daryll'
+
+  doRequest = (username, path) ->
+    $http(
+      method: 'JSONP'
+      url: "https://api.github.com/users/#{username}/#{path}?callback=JSON_CALLBACK"
+    )
+
+  return {
+    events: (username) -> doRequest(username, 'events')
+    setUsername: (newUsername) ->
+      githubUsername = newUsername
+  }
+])
+
+Angulearn.controller('ServiceController', ['$scope', '$timeout', 'githubService', ($scope, $timeout, githubService) ->
+  $scope.$watch('username', (newUsername) ->
+    githubService.events(newUsername)
+      .success( (data, status, headers) ->
+        $scope.events = data.data
+      ))
+])
+
+Angulearn.controller("MyController", ($scope) ->
+  $scope.name = "Hello"
+
+  updateClock = () ->
+    $scope.clock = new Date()
+
+  timer = setInterval( ->
+    $scope.$apply(updateClock)
+  , 1000)
+
+  updateClock()
+)
+
+Angulearn.controller("MayController", ($scope) ->
+  $scope.name = "Two"
+  $scope.sayHello = () ->
+    $scope.name = Math.random(0,5)
+)
+
+Angulearn.controller("PlayerController", ($scope, $http) ->
+  $http({method: 'JSONP', url:  'https://api.github.com/events?callback=JSON_CALLBACK'}).success( (data, status) -> console.log(data) )
+
+
+  $scope.playing = false
+  $scope.audio = document.createElement('audio')
+  $scope.audio.src = "http://podcasts.thoughtbot.com/giantrobots/102.mp3"
+  $scope.play = ->
+    $scope.audio.play()
+    $scope.playing = true
+  $scope.stop = ->
+    $scope.audio.pause()
+    $scope.playing = false
+
+)
+
+Angulearn.controller("DemoController", ['$scope', ($scope) ->
+  $scope.number = 0
+  $scope.add = (yolo) -> $scope.number += yolo
+  $scope.subtract = (yolo) -> $scope.number -= yolo
+])
+
+Angulearn.controller "HomiesController", ($scope) ->
+  $scope.homies = [
+    { name: "Daryll" }
+    { name: "Mah Homies" }
+    { name: "Jerico" }
+    { name: "Justin" }
+  ]
+
+
+  

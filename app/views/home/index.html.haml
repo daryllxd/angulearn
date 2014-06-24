@@ -1,7 +1,28 @@
-.container{"ng-app" => ""}
+.container{"ng-app" => "angulearn"}
   %h1 Angulearn
   %input{"type" => "text", "ng-model" => "name"}
-  %p {{name}}
   %div{"ng-controller" => "MyController"}
-    %h5 {{clock.now}}
+    %h4 Time: {{ clock }}
+    %h5 {{ name }}
+    %h5 {{ amfefe }}
+  %div{"ng-controller" => "MayController"}
+    %h5 {{ name }}
+    %a{"ng-click" => "sayHello()"} CLICK ME
+    %h5 Rounded: {{ name | number: 2 }}
+  %div{"ng-controller" => "PlayerController"}
+    %h1 SOUND IT UP
+    %button.btn.btn-primary{"ng-click" => "play()", "ng-show" => "!playing"}PLAY
+    %button.btn.btn-danger{"ng-click" => "stop()", "ng-show" => "playing"}STOP
+    %p Playing audio: {{ playing }}
+  %div{"ng-controller" => "DemoController"}
+    %button{"ng-click" => "add(1)"}Add this shit.
+    %button{"ng-click" => "subtract(1)"}Subtract this shit.
+    %h3 {{ number }}
+  %div{"ng-controller" => "HomiesController"}
+    %div{"ng-repeat" => "homie in homies"}
+      %li {{ homie.name }}
+  %div{"ng-controller" => "ServiceController"}
+    %label{"for" => "username"}Type in a username
+    %input{"type" => "text", "ng-model" => "username", "placeholder" => "Github username?"}
+    %pre{"ng-show" => "username"} {{ events }}
 
